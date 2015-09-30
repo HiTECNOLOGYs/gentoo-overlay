@@ -119,11 +119,6 @@ RDEPEND="${COMMON_DEPEND}
 REQUIRED_USE="
 	collectd_plugins_python?		( ${PYTHON_REQUIRED_USE} )"
 
-PATCHES=(
-	"${FILESDIR}/${PN}-5.4.1"-{nohal,libocci,libperl,lt}.patch
-	"${FILESDIR}/${PN}-4.10.3"-werror.patch
-)
-
 # @FUNCTION: collectd_plugin_kernel_linux
 # @DESCRIPTION:
 # USAGE: <plug-in name> <kernel_options> <severity>
