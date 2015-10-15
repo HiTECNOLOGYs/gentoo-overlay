@@ -4,11 +4,11 @@
   <repo quality="experimental" status="unofficial">
     <name>hitecnologys-overlay</name>
     <description>Stuff and magic.</description>
-    <homepage>https://redmine.hitecnologys.org/projects/gentoo-overlay</homepage>
+    <homepage>https://projects.hitecnologys.org/projects/gentoo-overlay</homepage>
     <owner>
       <name>Mark Fedurin</name>
       <email>me@hitecnologys.org</email>
     </owner>
-    <source type="git">git://redmine.hitecnologys.org/gentoo-overlay.git</source>
+    <source type="git">git://projects.hitecnologys.org/gentoo-overlay.git</source>
   </repo>
 </repositories>
