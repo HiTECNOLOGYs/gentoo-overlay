@@ -9,6 +9,6 @@
       <name>Mark Fedurin</name>
       <email>me@hitecnologys.org</email>
     </owner>
-    <source type="git">https://redmine.hitecnologys.org/gentoo-overlay.git</source>
+    <source type="git">git://redmine.hitecnologys.org/gentoo-overlay.git</source>
   </repo>
 </repositories>
