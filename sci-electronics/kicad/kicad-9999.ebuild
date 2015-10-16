@@ -17,7 +17,7 @@ SRC_URI=""
 LICENSE="GPL-2 kicad-doc"
 SLOT="0"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="**"
 
 IUSE="python components-library doc"
 LANGS="de en es fr hu it ja pl pt ru zh_CN"
