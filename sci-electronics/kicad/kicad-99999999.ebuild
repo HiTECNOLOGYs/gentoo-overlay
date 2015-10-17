@@ -33,7 +33,8 @@ DEPEND="${CDEPEND}
 	dev-util/cmake
 	dev-libs/boost[python]
 	doc? ( app-doc/doxygen )
-	python? ( dev-lang/swig )"
+	python? ( dev-lang/swig )
+	components-library? ( sci-electronics/kicad-library )"
 
 RDEPEND="${CDEPEND}
 	sys-libs/zlib
@@ -56,8 +57,6 @@ src_install() {
 	if use components-library; then
 		sh "${WORKDIR}/${P}/scripts/library-repos-install.sh" --install-or-update
 	fi
-
-	cmake-utils_src_install
 }
 
 pkg_postinst() {
