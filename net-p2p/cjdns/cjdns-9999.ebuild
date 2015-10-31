@@ -46,6 +46,9 @@ src_install() {
 }
 
 pkg_postinst() {
+	# Adding user
+	enewuser cjdns
+
 	local config_file="cjdroute.conf"
 	local config_path="${ROOT}etc/${config_file}"
 
