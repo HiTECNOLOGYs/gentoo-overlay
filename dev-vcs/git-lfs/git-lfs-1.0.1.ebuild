@@ -24,6 +24,6 @@ src_install() {
 	dobin git-lfs
 }
 
-pkg_config() {
+pkg_setup() {
 	git lfs init
 }
