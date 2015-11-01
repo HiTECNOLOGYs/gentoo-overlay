@@ -15,8 +15,14 @@ EGIT_REPO_URI="git://github.com/cjdelisle/cjdns.git \
 EGIT_BRANCH="master"
 LICENSE="GPL-3"
 
+if [[ ! "${PV}" == "9999" ]]; then
+    KEYWORDS="~amd64"
+	EGIT_COMMIT="cjdns-v${PV}"
+else
+    KEYWORDS=""
+fi
+
 SLOT="0"
-KEYWORDS=""
 IUSE=""
 
 DEPEND=">=net-libs/nodejs-0.10.30
@@ -45,9 +51,15 @@ src_install() {
 	dosbin cjdroute
 }
 
+pkg_setup() {
+    ebegin "Creating cjdns user and group"
+    enewgroup ${PN}
+	enewuser ${PN} -1 -1 -1 ${PN}
+    eend $?
+}
+
 pkg_postinst() {
 	# Adding user
-	enewuser cjdns
 
 	local config_file="cjdroute.conf"
 	local config_path="${ROOT}etc/${config_file}"
