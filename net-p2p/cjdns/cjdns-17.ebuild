@@ -14,12 +14,10 @@ EGIT_REPO_URI="git://github.com/cjdelisle/cjdns.git \
                https://github.com/cjdelisle/cjdns.git"
 EGIT_BRANCH="master"
 LICENSE="GPL-3"
+KEYWORDS="~amd64"
 
 if [[ ! "${PV}" == "9999" ]]; then
-    KEYWORDS="~amd64"
 	EGIT_COMMIT="cjdns-v${PV}"
-else
-    KEYWORDS=""
 fi
 
 SLOT="0"
