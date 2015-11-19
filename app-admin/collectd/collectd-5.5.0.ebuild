@@ -34,7 +34,7 @@ COLLECTD_UNTESTED_PLUGINS="amqp apple_sensors genericjmx ipvs lpar modbus redis
 COLLECTD_TESTED_PLUGINS="aggregation apache apcups ascent battery bind cgroups
 	conntrack contextswitch cpu cpufreq csv curl curl_json curl_xml dbi df disk dns
 	email entropy ethstat exec filecount fscache gmond hddtemp interface ipmi
-	iptables irq java libvirt load logfile lvm madwifi match_empty_counter
+	iptables irq java virt load logfile lvm madwifi match_empty_counter
 	match_hashed match_regex match_timediff match_value mbmon md memcachec memcached
 	memory multimeter mysql netlink network network nfs nginx notify_desktop
 	notify_email ntpd numa nut olsrd onewire openvpn oracle perl perl ping postgresql
@@ -70,7 +70,7 @@ COMMON_DEPEND="
 	collectd_plugins_gmond?			( sys-cluster/ganglia )
 	collectd_plugins_ipmi?			( >=sys-libs/openipmi-2.0.16-r1 )
 	collectd_plugins_iptables?		( >=net-firewall/iptables-1.4.13 )
-	collectd_plugins_libvirt?		( app-emulation/libvirt dev-libs/libxml2 )
+	collectd_plugins_virt?		( app-emulation/libvirt dev-libs/libxml2 )
 	collectd_plugins_lvm?			( sys-fs/lvm2 )
 	collectd_plugins_memcachec?		( dev-libs/libmemcached )
 	collectd_plugins_mysql?			( >=virtual/mysql-5.0 )
