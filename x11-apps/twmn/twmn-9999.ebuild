@@ -58,6 +58,7 @@ src_install()
     dobin bin/twmnd bin/twmnc
 	dodoc ${DOCS[@]}
 	if use examples; then
-		dodoc "examples"
+        insinto /usr/share/twmn
+        doins -r "${S}/examples"
 	fi
 }
