@@ -4,6 +4,7 @@
 
 EAPI=5
 USE_RUBY="ruby19 ruby20 ruby21 jruby"
+RUBY_FAKEGEM_EXTRADOC="README.md"
 
 inherit ruby-fakegem
 
@@ -23,8 +24,6 @@ pkg_postinst() {
   enewgroup ${PN}
   enewuser ${PN} -1 -1 -1 ${PN}
   eend $?
-}
 
-src_install() {
-	newinitd "${FILESDIR}/fluentd.rc" fluentd
+  newinitd "${FILESDIR}/fluentd.rc" fluentd
 }
