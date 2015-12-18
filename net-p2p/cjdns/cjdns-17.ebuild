@@ -49,15 +49,11 @@ src_install() {
 	dosbin cjdroute
 }
 
-pkg_setup() {
+pkg_postinst() {
     ebegin "Creating cjdns user and group"
     enewgroup ${PN}
 	enewuser ${PN} -1 -1 -1 ${PN}
     eend $?
-}
-
-pkg_postinst() {
-	# Adding user
 
 	local config_file="cjdroute.conf"
 	local config_path="${ROOT}etc/${config_file}"
