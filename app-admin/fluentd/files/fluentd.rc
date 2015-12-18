@@ -1,0 +1,30 @@
+#!/sbin/runscript
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+: ${FLUENTD_PIDFILE:='/var/run/fluentd/fluentd.pid'}
+: ${FLUENTD_CONFIG:='/etc/fluent/fluent.conf'}
+: ${FLUENTD_USER:='fluentd'}
+: ${FLUENTD_GROUP:='fluentd'}
+
+depend() {
+	use net
+}
+
+start() {
+	[ -d /var/run/fluentd ] || mkdir /var/run/fluentd && chown fluentd:fluentd /var/run/fluentd
+
+	ebegin "Starting fluentd"
+	start-stop-daemon --start --user "${FLUENTD_USER}:${FLUENTD_GROUP}" \
+		--exec /usr/bin/fluentd -- \
+        -P "${FLUENTD_PIDFILE}" -C "${FLUENTD_CONFIG}"
+	eend $? "Failed to start fluentd"
+}
+
+stop() {
+	ebegin "Stopping fluentd"
+	start-stop-daemon --stop \
+		--pidfile "${FLUENTD_PIDFILE}"
+	eend $? "Failed to stop fluentd"
+}
