@@ -4,6 +4,10 @@ description="Encrypted networking for regular people."
 command=/usr/sbin/cjdroute
 name="CJDNS"
 
+depend() {
+  need net;
+}
+
 start() {
     if [ ! -e /dev/net/tun ]; then
         ebegin "Inserting TUN module"
