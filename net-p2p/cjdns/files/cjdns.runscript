@@ -1,14 +1,19 @@
 #!/sbin/runscript
-#
+# Copyright 1999-2016 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
 description="Encrypted networking for regular people."
-command=/usr/sbin/cjdroute
-name="CJDNS"
+
+: ${PIDFILE:='/var/run/cjdns/cjdns.pid'}
 
 depend() {
   need net;
 }
 
 start() {
+    [ -d /var/run/cjdns ] || mkdir /var/run/cjdns
+
     if [ ! -e /dev/net/tun ]; then
         ebegin "Inserting TUN module"
         if ! modprobe tun;  then
@@ -17,28 +22,29 @@ start() {
         fi
     fi
 
-    ebegin "Starting $name"
-    $command < /etc/cjdroute.conf
-    eend $? "Failed to start $name"
+    ebegin "Starting cjdns"
+	start-stop-daemon --start \
+		--exec /usr/sbin/cjdroute < /etc/cjdroute.conf
+    eend $? "Failed to start cjdns"
 }
 
-status() {
-    ebegin "Pinging admin port"
-    exec 3<>/dev/udp/127.0.0.1/11234
-    echo -n 'd1:q4:pinge' >&3
-    local pong
-    read -u 3 -N 11 pong 2>/dev/null
-    rv=$?
-    exec 3<&-
-    exec 3>&-
-
-    if !(( $rv )) && [ "$pong" = "d1:q4:ponge" ]; then
-        mark_service_started $SVC
-        einfo "$pong"
-        exit 0
-    fi
-
-    mark_service_wasinactive $SVC
-    eerror "failed to ping admin port"
-    exit 1
-}
+#status() {
+#    ebegin "Pinging admin port"
+#    exec 3<>/dev/udp/127.0.0.1/11234
+#    echo -n 'd1:q4:pinge' >&3
+#    local pong
+#    read -u 3 -N 11 pong 2>/dev/null
+#    rv=$?
+#    exec 3<&-
+#    exec 3>&-
+#
+#    if !(( $rv )) && [ "$pong" = "d1:q4:ponge" ]; then
+#        mark_service_started $SVC
+#        einfo "$pong"
+#        exit 0
+#    fi
+#
+#    mark_service_wasinactive $SVC
+#    eerror "failed to ping admin port"
+#    exit 1
+#}
